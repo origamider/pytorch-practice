@@ -5,7 +5,8 @@
 
 # 実装・実験リスト (Projects)
 - 活性化関数の役割の検証(activation-functions/)
-- Irisデータセットによる2値分類(classification/)
+- Irisデータセットによる2値分類(classification/iris_binary_classification)
+- MNISTデータセットによる数字認識(mnist/train_mlp.py)
 
 # 環境
 - OS:macOS(Apple M3)

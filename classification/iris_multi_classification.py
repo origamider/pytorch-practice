@@ -30,14 +30,14 @@ n_output = 3 # 出力数(今回は3種類のあやめの予測値をそれぞれ
 
 ## 今回の予測関数は、単純な線形関数のみ(y=Wx+b的なやつね)
 class Model(nn.Module):
-  def __init__(self,n_input,n_output):
-    super().__init__()
-    self.l1 = nn.Linear(n_input,n_output)
-  
-  def forward(self,x):
-    val = self.l1(x)
-    return val
-  
+	def __init__(self,n_input,n_output):
+		super().__init__()
+		self.l1 = nn.Linear(n_input,n_output)
+
+	def forward(self,x):
+		val = self.l1(x)
+		return val
+
 # ハイパーパラメータなど
 model = Model(n_input,n_output)
 lr = 0.01
@@ -48,24 +48,24 @@ history = []
 
 # 学習
 for epoch in range(num_epochs):
-  optimizer.zero_grad()
-  outputs = model(inputs)
-  loss = criterion(outputs,labels)
-  loss.backward()
-  optimizer.step()
-  predicted = torch.max(outputs,dim=1)[1] # outputsの中で一番大きな値は、結局nn.CrossEntropyLossを通しても最大なので。
-  train_acc = (labels==predicted).sum() / len(labels)
-  
-  with torch.no_grad():
-    outputs_test = model(inputs_test)
-    loss_test = criterion(outputs_test,labels_test)
-    predicted_test = torch.max(outputs_test,dim=1)[1]
-    test_acc = (labels_test==predicted_test).sum() / len(labels_test)
-    
-  if epoch % 100 == 0:
-    print(f"(epoch:{epoch} train_loss:{loss.item()} train_acc:{train_acc} loss_test:{loss_test} test_acc:{test_acc})")
-    message = np.array([epoch,loss.item(),train_acc,loss_test.item(),test_acc])
-    history.append(message)
+	optimizer.zero_grad()
+	outputs = model(inputs)
+	loss = criterion(outputs,labels)
+	loss.backward()
+	optimizer.step()
+	predicted = torch.max(outputs,dim=1)[1] # outputsの中で一番大きな値は、結局nn.CrossEntropyLossを通しても最大なので。
+	train_acc = (labels==predicted).sum() / len(labels)
+	
+	with torch.no_grad():
+		outputs_test = model(inputs_test)
+		loss_test = criterion(outputs_test,labels_test)
+		predicted_test = torch.max(outputs_test,dim=1)[1]
+		test_acc = (labels_test==predicted_test).sum() / len(labels_test)
+		
+	if epoch % 100 == 0:
+		print(f"(epoch:{epoch} train_loss:{loss.item()} train_acc:{train_acc} loss_test:{loss_test} test_acc:{test_acc})")
+		message = np.array([epoch,loss.item(),train_acc,loss_test.item(),test_acc])
+		history.append(message)
 
 history = np.array(history)
 # 学習曲線の表示
