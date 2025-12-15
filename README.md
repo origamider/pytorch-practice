@@ -7,6 +7,8 @@
 - 活性化関数の役割の検証(activation-functions/)
 - Irisデータセットによる2値分類(classification/iris_binary_classification)
 - MNISTデータセットによる数字認識(mnist/train_mlp.py)
+- CIFAR-10データセットによる画像認識(シンプルなCNN)(cifar-10/train_cnn.py)
+- CIFAR-10データセットによる画像認識モデル(チューニング済)(cifar-10/train_cnn.py)
 
 # 環境
 - OS:macOS(Apple M3)
